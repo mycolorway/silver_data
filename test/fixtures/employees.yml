@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  joined_at: 2017-03-14 01:55:38
+  regularized_at: 2017-03-14 01:55:38
+  department: one
+  phone: MyString
+  salary: 
+  salary: 
+  company: one
+
+two:
+  name: MyString
+  joined_at: 2017-03-14 01:55:38
+  regularized_at: 2017-03-14 01:55:38
+  department: two
+  phone: MyString
+  salary: 
+  salary: 
+  company: two

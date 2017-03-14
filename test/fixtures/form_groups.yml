@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  options: MyText
+  form: one
+  form_group: one
+  form_field: one
+  type: 
+
+two:
+  name: MyString
+  options: MyText
+  form: two
+  form_group: two
+  form_field: two
+  type: 

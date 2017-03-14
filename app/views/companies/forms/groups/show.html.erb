@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @group.name %>
+</p>
+
+<p>
+  <strong>Options:</strong>
+  <%= @group.options %>
+</p>
+
+<%= link_to 'Edit', edit_company_form_group_path(@company, @form, @group) %> |
+<%= link_to 'Back', company_form_groups_path(@company, @form) %>

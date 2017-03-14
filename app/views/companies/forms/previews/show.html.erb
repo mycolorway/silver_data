@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @form.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @form.description %>
+</p>
+
+<% form_model = @groups.first %>
+
+<%= form_for form_model.new(**form_model.options[:default]), as: :form, url: '#' do |f| %>
+    <% form_model.attribute_names.each do |attr| %>
+        <% config = form_model.options[:input][attr.to_sym] %>
+
+        <div class="field">
+          <label><%= config[:title] %>: <%= config[:hint] %></label>
+          <%= f.send config[:input_type].to_sym, attr %>
+        </div>
+
+    <% end %>
+<% end %>
+
+
+<%= link_to 'Back', company_forms_path(@company) %>

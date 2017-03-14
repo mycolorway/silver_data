@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Forms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @forms.each do |form| %>
+      <tr>
+        <td><%= form.title %></td>
+        <td><%= link_to 'Preview', company_form_preview_path(@company, form) %></td>
+        <td><%= link_to 'Show', company_form_path(@company, form) %></td>
+        <td><%= link_to 'Edit', edit_company_form_path(@company, form) %></td>
+        <td><%= link_to 'Destroy', company_form_path(@company, form), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Form', new_company_form_path(@company) %> |
+<%= link_to 'Back', company_path(@company) %>

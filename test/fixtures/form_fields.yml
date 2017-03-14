@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  title: MyString
+  hint: MyString
+  data_type: MyString
+  default_value: MyString
+  validation_options: MyText
+  form_group: one
+
+two:
+  name: MyString
+  title: MyString
+  hint: MyString
+  data_type: MyString
+  default_value: MyString
+  validation_options: MyText
+  form_group: two

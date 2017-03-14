@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170313175538) do
+ActiveRecord::Schema.define(version: 20170313214517) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -38,6 +38,45 @@ ActiveRecord::Schema.define(version: 20170313175538) do
     t.datetime "updated_at",                              null: false
     t.index ["company_id"], name: "index_employees_on_company_id"
     t.index ["department_id"], name: "index_employees_on_department_id"
+  end
+
+  create_table "form_fields", force: :cascade do |t|
+    t.string   "name"
+    t.string   "title"
+    t.string   "hint"
+    t.string   "data_type"
+    t.string   "input_type"
+    t.string   "render_type"
+    t.string   "default_value"
+    t.text     "input_options"
+    t.text     "render_options"
+    t.integer  "form_group_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["form_group_id"], name: "index_form_fields_on_form_group_id"
+  end
+
+  create_table "form_groups", force: :cascade do |t|
+    t.string   "title"
+    t.text     "options"
+    t.integer  "form_id"
+    t.integer  "form_group_id"
+    t.integer  "form_field_id"
+    t.string   "type"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["form_field_id"], name: "index_form_groups_on_form_field_id"
+    t.index ["form_group_id"], name: "index_form_groups_on_form_group_id"
+    t.index ["form_id"], name: "index_form_groups_on_form_id"
+  end
+
+  create_table "forms", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.integer  "company_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["company_id"], name: "index_forms_on_company_id"
   end
 
 end

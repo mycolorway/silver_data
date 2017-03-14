@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @form.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @form.description %>
+</p>
+
+<p>
+  <strong>Groups:</strong> <%= link_to 'New Group', new_company_form_group_path(@company, @form) %>
+</p>
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Options</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @groups.each do |group| %>
+      <tr>
+        <td><%= group.name %></td>
+        <td><%= group.options %></td>
+        <td><%= link_to 'Show', company_form_group_path(@company, @form, group) %></td>
+        <td><%= link_to 'Edit', edit_company_form_group_path(@company, @form, group) %></td>
+        <td><%= link_to 'Destroy', company_form_group_path(@company, @form, group), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_company_form_path(@company, @form) %> |
+<%= link_to 'Back', company_forms_path(@company) %>

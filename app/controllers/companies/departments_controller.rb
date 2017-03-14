@@ -1,5 +1,4 @@
-class DepartmentsController < ApplicationController
-  before_action :set_company
+class Companies::DepartmentsController < Companies::ApplicationController
   before_action :set_department, only: [:show, :edit, :update, :destroy]
 
   # GET /departments
@@ -64,11 +63,6 @@ class DepartmentsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_company
-    @company = Company.find(params[:company_id])
-  end
-
   def set_department
     @department = @company.departments.find(params[:id])
   end
@@ -78,3 +72,4 @@ class DepartmentsController < ApplicationController
     params.require(:department).permit(:name)
   end
 end
+

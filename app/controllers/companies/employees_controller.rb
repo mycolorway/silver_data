@@ -1,5 +1,4 @@
-class EmployeesController < ApplicationController
-  before_action :set_company
+class Companies::EmployeesController < Companies::ApplicationController
   before_action :set_employee, only: [:show, :edit, :update, :destroy]
 
   # GET /employees
@@ -64,9 +63,6 @@ class EmployeesController < ApplicationController
 
   private
   # Use callbacks to share common setup or constraints between actions.
-  def set_company
-    @company = Company.find(params[:company_id])
-  end
   def set_employee
     @employee = @company.employees.find(params[:id])
   end

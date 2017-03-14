@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @form_field.name %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @form_field.title %>
+</p>
+
+<p>
+  <strong>Hint:</strong>
+  <%= @form_field.hint %>
+</p>
+
+<p>
+  <strong>Data type:</strong>
+  <%= @form_field.data_type %>
+</p>
+
+<p>
+  <strong>Default value:</strong>
+  <%= @form_field.default_value %>
+</p>
+
+<p>
+  <strong>Validation options:</strong>
+  <%= @form_field.validation_options %>
+</p>
+
+<p>
+  <strong>Form group:</strong>
+  <%= @form_field.form_group %>
+</p>
+
+<%= link_to 'Edit', edit_form_field_path(@form_field) %> |
+<%= link_to 'Back', form_fields_path %>

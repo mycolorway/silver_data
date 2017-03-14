@@ -30,8 +30,6 @@ params = {
   default_value: '张三',
   # 字段的输入方式
   input_type: :text_field,
-  # 字段的渲染方式
-  render_type: :default,
   # 字段的输入配置
   input_options: {
     # 输入验证
@@ -41,9 +39,7 @@ params = {
       # 长度验证
       length: {minimum: 2}
     }
-  },
-  # 字段的渲染配置
-  render_options: {}
+  }
 }
 group.fields.create! **params
 
@@ -59,8 +55,6 @@ params = {
   data_type: :string,
   # 字段的输入方式
   input_type: :text_field,
-  # 字段的渲染方式
-  render_type: :default,
   # 字段的输入配置
   input_options: {
     # 输入验证
@@ -68,41 +62,35 @@ params = {
       # 非空
       presence: true
     }
-  },
-  # 字段的渲染配置
-  render_options: {}
+  }
 }
 group.fields.create! **params
 
 # 再创建一个简单字段
-params = {
-  # 字段标识
-  name: 'department',
-  # 字段显示名字
-  title: '部门',
-  # 字段的数据类型
-  data_type: :string,
-  # 字段的输入方式
-  input_type: :select,
-  # 字段的渲染方式
-  render_type: :default,
-  # 字段的输入配置
-  input_options: {
-    # 输入验证
-    validations: {
-      # 非空
-      presence: true
-    },
-    data_source: {
-      department: {
-        company_id: 1
-      }
-    }
-  },
-  # 字段的渲染配置
-  render_options: {}
-}
-group.fields.create! **params
+# params = {
+#   # 字段标识
+#   name: 'department',
+#   # 字段显示名字
+#   title: '部门',
+#   # 字段的数据类型
+#   data_type: :string,
+#   # 字段的输入方式
+#   input_type: :select,
+#   # 字段的输入配置
+#   input_options: {
+#     # 输入验证
+#     validations: {
+#       # 非空
+#       presence: true
+#     },
+#     data_source: {
+#       department: {
+#         company_id: 1
+#       }
+#     }
+#   }
+# }
+# group.fields.create! **params
 
 # 表单的组是一个树形结构
 nested_group = group.groups.create!
@@ -116,8 +104,6 @@ params = {
   data_type: :time,
   # 字段的输入方式
   input_type: :time_field,
-  # 字段的渲染方式
-  render_type: :default,
   # 字段的输入配置
   input_options: {
     # 输入验证
@@ -125,9 +111,7 @@ params = {
       # 非空
       presence: true
     }
-  },
-  # 字段的渲染配置
-  render_options: {}
+  }
 }
 nested_group.fields.create! **params
 
@@ -136,13 +120,11 @@ params = {
   # 字段标识
   name: 'ended_at',
   # 字段显示名字
-  title: '开始时间',
+  title: '结束时间',
   # 字段的数据类型
   data_type: :time,
   # 字段的输入方式
   input_type: :time_field,
-  # 字段的渲染方式
-  render_type: :default,
   # 字段的输入配置
   input_options: {
     # 输入验证
@@ -152,9 +134,7 @@ params = {
         allow_blank: true
       }
     }
-  },
-  # 字段的渲染配置
-  render_options: {}
+  }
 }
 nested_group.fields.create! **params
 
@@ -169,8 +149,6 @@ params = {
   data_type: :string,
   # 字段的输入方式
   input_type: :text_field,
-  # 字段的渲染方式
-  render_type: :default,
   # 字段的输入配置
   input_options: {
     # 输入验证
@@ -178,9 +156,7 @@ params = {
       # 非空
       presence: true
     }
-  },
-  # 字段的渲染配置
-  render_options: {}
+  }
 }
 nested_group.fields.create! **params
 
@@ -194,8 +170,6 @@ params = {
   data_type: :string,
   # 字段的输入方式
   input_type: :number_field,
-  # 字段的渲染方式
-  render_type: :default,
   # 字段的输入配置
   input_options: {
     # 输入验证
@@ -206,8 +180,6 @@ params = {
         greater_than: 0
       }
     }
-  },
-  # 字段的渲染配置
-  render_options: {}
+  }
 }
 nested_group.fields.create! **params

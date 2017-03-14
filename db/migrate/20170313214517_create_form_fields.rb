@@ -6,10 +6,8 @@ class CreateFormFields < ActiveRecord::Migration[5.0]
       t.string :hint
       t.string :data_type
       t.string :input_type
-      t.string :render_type
       t.string :default_value
       t.text :input_options
-      t.text :render_options
       t.references :form_group, foreign_key: true
 
       t.timestamps

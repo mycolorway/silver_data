@@ -46,13 +46,11 @@ ActiveRecord::Schema.define(version: 20170313214517) do
     t.string   "hint"
     t.string   "data_type"
     t.string   "input_type"
-    t.string   "render_type"
     t.string   "default_value"
     t.text     "input_options"
-    t.text     "render_options"
     t.integer  "form_group_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.index ["form_group_id"], name: "index_form_fields_on_form_group_id"
   end
 

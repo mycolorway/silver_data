@@ -30,6 +30,7 @@ class Companies::Forms::PreviewsController < Companies::Forms::ApplicationContro
         model.options[:default][key] = f.default_value
         model.class_eval do
           attribute key, f.data_type.to_sym
+
           validations = f.input_options[:validations]
           if validations.present?
             validations.each do |k, v|
@@ -42,3 +43,4 @@ class Companies::Forms::PreviewsController < Companies::Forms::ApplicationContro
     end
   end
 end
+

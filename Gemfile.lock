@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/jasl/duck_record.git
-  revision: d308f4d457da473252989af1274906477f19594a
+  revision: 91b7c5d9b3c983b8cbb770e044a00a6461edd887
   specs:
-    duck_record (0.0.4)
+    duck_record (0.0.5)
       activemodel (~> 5.0)
       activesupport (~> 5.0)
 
@@ -93,7 +93,7 @@ GEM
     nio4r (2.0.0)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
-    puma (3.8.1)
+    puma (3.8.2)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)

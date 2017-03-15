@@ -58,13 +58,13 @@ ActiveRecord::Schema.define(version: 20170313214517) do
     t.string   "title"
     t.text     "options"
     t.integer  "form_id"
-    t.integer  "form_group_id"
     t.integer  "form_field_id"
+    t.string   "ancestry"
     t.string   "type"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.index ["ancestry"], name: "index_form_groups_on_ancestry"
     t.index ["form_field_id"], name: "index_form_groups_on_form_field_id"
-    t.index ["form_group_id"], name: "index_form_groups_on_form_group_id"
     t.index ["form_id"], name: "index_form_groups_on_form_id"
   end
 

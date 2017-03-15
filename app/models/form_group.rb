@@ -1,7 +1,9 @@
 class FormGroup < ApplicationRecord
-  has_many :fields, class_name: 'FormField'
-  has_many :groups, class_name: 'FormGroup', foreign_key: 'form_group_id'
+  belongs_to :form, inverse_of: :group
 
+  has_ancestry
+
+  has_many :fields, class_name: 'FormField'
   serialize :options, Hash
 
   def self.model_name

@@ -10,11 +10,9 @@
   <%= @form.description %>
 </p>
 
-<% form_model = @groups.first %>
-
-<%= form_for form_model.new(**form_model.options[:default]), as: :form, url: '#' do |f| %>
-    <% form_model.attribute_names.each do |attr| %>
-        <% config = form_model.options[:input][attr.to_sym] %>
+<%= form_for @model.new(**@model.options[:default]), as: :form, url: '#' do |f| %>
+    <% @model.attribute_names.each do |attr| %>
+        <% config = @model.options[:input][attr.to_sym] %>
 
         <div class="field">
           <label><%= config[:title] %>: <%= config[:hint] %></label>

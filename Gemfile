@@ -37,6 +37,8 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'duck_record', github: 'jasl/duck_record'
 
+gem 'ancestry'
+
 gem 'bootstrap-sass', '~> 3.3.6'
 
 group :development, :test do

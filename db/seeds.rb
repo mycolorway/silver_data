@@ -15,7 +15,7 @@ end
 # 创建表单记录
 form = company.forms.create! title: '样本表单', description: '样本表单，测试各种类型字段的支持情况'
 # 创建表单字段组1
-group = form.groups.create! title: '字段组1'
+group = form.create_group! title: '字段组1'
 # 创建一个简单字段
 params = {
   # 字段标识
@@ -93,7 +93,7 @@ group.fields.create! **params
 # group.fields.create! **params
 
 # 表单的组是一个树形结构
-nested_group = group.groups.create!
+nested_group = group.children.create!
 # 再创建一个简单字段
 params = {
   # 字段标识
@@ -138,7 +138,7 @@ params = {
 }
 nested_group.fields.create! **params
 
-nested_group = group.groups.create! title: '清单', options: {repeatable_templete: true}
+nested_group = group.children.create! title: '清单', options: {repeatable_templete: true}
 # 创建一个简单字段
 params = {
   # 字段标识

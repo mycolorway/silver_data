@@ -14,6 +14,7 @@ module SilverData
 
     config.after_initialize do
       require 'form_config'
+      require 'input_type'
     end
   end
 end

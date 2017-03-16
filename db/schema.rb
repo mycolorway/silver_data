@@ -44,25 +44,27 @@ ActiveRecord::Schema.define(version: 20170313214517) do
     t.string   "name"
     t.string   "title"
     t.string   "hint"
-    t.string   "data_type"
-    t.string   "input_type"
     t.string   "default_value"
+    t.string   "store_type"
+    t.string   "input_type"
     t.text     "input_options"
+    t.text     "validation_options"
     t.integer  "form_group_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.index ["form_group_id"], name: "index_form_fields_on_form_group_id"
   end
 
   create_table "form_groups", force: :cascade do |t|
-    t.string   "title"
+    t.string   "name"
+    t.string   "variant"
+    t.text     "validation_options"
     t.text     "options"
     t.integer  "form_id"
     t.integer  "form_field_id"
     t.string   "ancestry"
-    t.string   "type"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.index ["ancestry"], name: "index_form_groups_on_ancestry"
     t.index ["form_field_id"], name: "index_form_groups_on_form_field_id"
     t.index ["form_id"], name: "index_form_groups_on_form_id"

@@ -15,30 +15,29 @@ end
 # 创建表单记录
 form = company.forms.create! title: '样本表单', description: '样本表单，测试各种类型字段的支持情况'
 # 创建表单字段组1
-group = form.create_group! title: '字段组1'
+group = form.create_group! name: :demo, variant: :normal
 # 创建一个简单字段
 params = {
   # 字段标识
   name: 'name',
   # 字段显示名字
-  title: '名字',
+  title: '姓名',
   # 字段的输入提示
-  hint: '随便输入个名字',
+  hint: '你的姓名',
   # 字段的数据类型
-  data_type: :string,
+  store_type: :string,
   # 字段的默认值
   default_value: '张三',
   # 字段的输入方式
   input_type: :text_field,
   # 字段的输入配置
-  input_options: {
-    # 输入验证
-    validations: {
-      # 非空
-      presence: true,
-      # 长度验证
-      length: {minimum: 2}
-    }
+  input_options: {},
+  # 输入验证
+  validation_options: {
+    # 非空
+    presence: true,
+    # 长度验证
+    length: {minimum: 2}
   }
 }
 group.fields.create! **params
@@ -46,25 +45,26 @@ group.fields.create! **params
 # 再创建一个简单字段
 params = {
   # 字段标识
-  name: 'phone',
+  name: 'email',
   # 字段显示名字
-  title: '手机',
+  title: '邮箱',
   # 字段的输入提示
-  hint: '手机号',
+  hint: '你的邮箱',
   # 字段的数据类型
-  data_type: :string,
+  store_type: :string,
   # 字段的输入方式
-  input_type: :text_field,
+  input_type: :email_field,
   # 字段的输入配置
-  input_options: {
-    # 输入验证
-    validations: {
-      # 非空
-      presence: true
-    }
+  input_options: {},
+  # 输入验证
+  validation_options: {
+    # 非空
+    presence: true
   }
 }
 group.fields.create! **params
+
+nested_group = group.children.create! name: :work, variant: :normal
 
 # 再创建一个简单字段
 # params = {
@@ -73,7 +73,7 @@ group.fields.create! **params
 #   # 字段显示名字
 #   title: '部门',
 #   # 字段的数据类型
-#   data_type: :string,
+#   store_type: :string,
 #   # 字段的输入方式
 #   input_type: :select,
 #   # 字段的输入配置
@@ -93,23 +93,22 @@ group.fields.create! **params
 # group.fields.create! **params
 
 # 表单的组是一个树形结构
-nested_group = group.children.create!
+nested_group = nested_group.children.create! name: :join_and_leave, variant: :combination
 # 再创建一个简单字段
 params = {
   # 字段标识
-  name: 'started_at',
+  name: 'joined_date',
   # 字段显示名字
-  title: '开始时间',
+  title: '加入日期',
   # 字段的数据类型
-  data_type: :time,
+  store_type: :date,
   # 字段的输入方式
-  input_type: :time_field,
-  # 字段的输入配置
-  input_options: {
-    # 输入验证
-    validations: {
-      # 非空
-      presence: true
+  input_type: :date_field,
+  # 输入验证
+  validation_options: {
+    early_than: {field: 'started_at'},
+    options: {
+      allow_blank: true
     }
   }
 }
@@ -118,27 +117,17 @@ nested_group.fields.create! **params
 # 再创建一个简单字段
 params = {
   # 字段标识
-  name: 'ended_at',
+  name: 'leaved_at',
   # 字段显示名字
-  title: '结束时间',
+  title: '离开日期',
   # 字段的数据类型
-  data_type: :time,
+  store_type: :date,
   # 字段的输入方式
-  input_type: :time_field,
-  # 字段的输入配置
-  input_options: {
-    # 输入验证
-    validations: {
-      later_than: {field: :started_at},
-      options: {
-        allow_blank: true
-      }
-    }
-  }
+  input_type: :date_field
 }
 nested_group.fields.create! **params
 
-nested_group = group.children.create! title: '清单', options: {repeatable_templete: true}
+nested_group = group.children.create! name: :item, variant: :collection, options: {title: '清单'}
 # 创建一个简单字段
 params = {
   # 字段标识
@@ -146,16 +135,13 @@ params = {
   # 字段显示名字
   title: '项目',
   # 字段的数据类型
-  data_type: :string,
+  store_type: :string,
   # 字段的输入方式
   input_type: :text_field,
-  # 字段的输入配置
-  input_options: {
-    # 输入验证
-    validations: {
-      # 非空
-      presence: true
-    }
+  # 输入验证
+  validation_options: {
+    # 非空
+    presence: true
   }
 }
 nested_group.fields.create! **params
@@ -167,18 +153,15 @@ params = {
   # 字段显示名字
   title: '数量',
   # 字段的数据类型
-  data_type: :string,
+  store_type: :string,
   # 字段的输入方式
   input_type: :number_field,
-  # 字段的输入配置
-  input_options: {
-    # 输入验证
-    validations: {
-      # 非空
-      presence: true,
-      numericality: {
-        greater_than: 0
-      }
+  # 输入验证
+  validation_options: {
+    # 非空
+    presence: true,
+    numericality: {
+      greater_than: 0
     }
   }
 }

@@ -9,6 +9,22 @@ class FormField < ApplicationRecord
   # validates :store_type, inclusion: { in: DuckRecord::Type.registry.registered }
   # validates :input_type, inclusion: { in: InputType.registry.registered }
 
+  def store_type
+    super.to_sym
+  end
+
+  def input_type
+    super.to_sym
+  end
+
+  def validation_options
+    super || {}
+  end
+
+  def input_options
+    super || {}
+  end
+
   def self.model_name
     ActiveModel::Name.new(self, nil, "Field")
   end

@@ -106,10 +106,8 @@ params = {
   input_type: :date_field,
   # 输入验证
   validation_options: {
-    early_than: {field: 'started_at'},
-    options: {
-      allow_blank: true
-    }
+    date: {before: :leaved_date},
+    allow_blank: true
   }
 }
 nested_group.fields.create! **params
@@ -117,7 +115,7 @@ nested_group.fields.create! **params
 # 再创建一个简单字段
 params = {
   # 字段标识
-  name: 'leaved_at',
+  name: 'leaved_date',
   # 字段显示名字
   title: '离开日期',
   # 字段的数据类型

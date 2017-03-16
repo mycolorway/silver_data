@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/jasl/duck_record.git
-  revision: 91b7c5d9b3c983b8cbb770e044a00a6461edd887
+  revision: fbec100fda4fd1b18dd099655d94c9fe64fd9d81
   specs:
     duck_record (0.0.5)
       activemodel (~> 5.0)
@@ -64,6 +64,9 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
+    date_validator (0.9.0)
+      activemodel
+      activesupport
     debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (2.7.0)
@@ -173,6 +176,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.6)
   byebug
   coffee-rails (~> 4.2)
+  date_validator
   duck_record!
   jbuilder (~> 2.5)
   jquery-rails

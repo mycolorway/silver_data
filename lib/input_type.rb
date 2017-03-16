@@ -6,7 +6,9 @@ require_relative 'input_type/date_field'
 require_relative 'input_type/email_field'
 require_relative 'input_type/select_field'
 require_relative 'input_type/text_field'
-require_relative '../lib/input_type/textarea_field'
+require_relative 'input_type/number_field'
+require_relative 'input_type/date_field'
+require_relative 'input_type/textarea_field'
 
 module InputType
   @registry = Registry.new
@@ -28,5 +30,6 @@ module InputType
   register(:email_field, EmailField)
   register(:select_field, SelectField)
   register(:text_field, TextField)
+  register(:number_field, NumberField)
   register(:textarea_field, TextareaField)
 end

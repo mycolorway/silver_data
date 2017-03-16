@@ -13,5 +13,10 @@ module InputType
     def available_validations
       [:presence]
     end
+
+    def render(view, form, name, field, options = {})
+      render_opt = {type: 'email'}
+      view.render view_path, form: form, name: name, options: render_opt
+    end
   end
 end

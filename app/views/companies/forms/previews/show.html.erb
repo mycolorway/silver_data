@@ -10,16 +10,22 @@
   <%= @form.description %>
 </p>
 
-<%= form_for @model.new(**@model.options[:default]), as: :form, url: '#' do |f| %>
-    <% @model.attribute_names.each do |attr| %>
-        <% config = @model.options[:input][attr.to_sym] %>
+<%= form_for @instance, as: :form, url: '#', method: :get do |f| %>
+    <% if @instance.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@instance.errors.count, "error") %> prohibited this group from being saved:</h2>
 
-        <div class="field">
-          <label><%= config[:title] %>: <%= config[:hint] %></label>
-          <%= f.send config[:input_type].to_sym, attr %>
-        </div>
-
+        <ul>
+          <% @instance.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
+
+    <%= render 'form', f: f, model: @model, instance: @instance %>
+
+    <%= f.submit %>
 <% end %>
 
 

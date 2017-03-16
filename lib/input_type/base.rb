@@ -4,13 +4,17 @@ module InputType
     def options; {}; end
     def validation_options; {}; end
     def available_validations; []; end
-    def view; self.class.to_s.split('::').last.downcase end
+    def template_filename; self.class.to_s.split('::').last.underscore.downcase end
+    def view_path
+      "#{self.class.view_root_path}#{template_filename}"
+    end
 
-    def name; end
-    def icon; end
+    def render(_view, _form, _name, _field, _options = {})
+      raise NotImplementedError
+    end
 
     def self.view_root_path
-      '_form/input_types/'
+      '_form/inputs/'
     end
   end
 end

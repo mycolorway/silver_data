@@ -1,0 +1,22 @@
+<% model.fields.each do |attr, type| %>
+  <% if type == :group %>
+    <% child_group = model.reflections[attr].klass %>
+    <% if child_group.variant == :collection %>
+      <%# TODO: NYI %>
+    <% else %>
+      <% instance.send("build_#{attr}") unless instance.send(attr) %>
+
+      <%= f.fields_for "#{attr}_attributes", instance.send(attr) do |ff| %>
+        <%= render 'form', f: ff, model: child_group, instance: instance.send(attr) %>
+      <% end %>
+    <% end %>
+
+  <% else %>
+    <% metadata = model.attribute_metadata[attr] %>
+
+    <div class="field">
+      <label><%= metadata[:title] %>: <%= metadata[:hint] %></label>
+      <%= metadata[:input_type].render(self, f, attr, metadata[:record]) %>
+    </div>
+  <% end %>
+<% end %>

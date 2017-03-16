@@ -1,7 +1,11 @@
 module InputType
-  class DateField < Base
+  class NumberField < Base
     def type
-      :date_field
+      :number_field
+    end
+
+    def available_validations
+      [:presence, :length]
     end
 
     def render(view, form, name, field, options = {})

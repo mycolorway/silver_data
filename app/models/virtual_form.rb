@@ -1,3 +1,3 @@
 class VirtualForm < DuckRecord::Base
-  cattr_accessor :name, :title, :options
+  cattr_accessor :name, :variant, :options
 end

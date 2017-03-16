@@ -41,12 +41,12 @@ ActiveRecord::Schema.define(version: 20170313214517) do
   end
 
   create_table "form_fields", force: :cascade do |t|
-    t.string   "name"
-    t.string   "title"
+    t.string   "name",               null: false
+    t.string   "title",              null: false
     t.string   "hint"
     t.string   "default_value"
-    t.string   "store_type"
-    t.string   "input_type"
+    t.string   "store_type",         null: false
+    t.string   "input_type",         null: false
     t.text     "input_options"
     t.text     "validation_options"
     t.integer  "form_group_id"
@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(version: 20170313214517) do
   end
 
   create_table "form_groups", force: :cascade do |t|
-    t.string   "name"
-    t.string   "variant"
+    t.string   "name",               null: false
+    t.string   "variant",            null: false
     t.text     "validation_options"
     t.text     "options"
     t.integer  "form_id"

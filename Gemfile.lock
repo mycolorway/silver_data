@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/jasl/duck_record.git
-  revision: fbec100fda4fd1b18dd099655d94c9fe64fd9d81
+  revision: d650996d1d7c17e25865398e1ffc91a91a182119
   specs:
-    duck_record (0.0.5)
+    duck_record (0.0.6)
       activemodel (~> 5.0)
       activesupport (~> 5.0)
 

@@ -2,7 +2,12 @@
   <% if type == :group %>
     <% child_group = model.reflections[attr].klass %>
     <% if child_group.variant == :collection %>
-      <%# TODO: NYI %>
+      <%= f.fields_for attr do |ff| %>
+        <%= render 'form', f: ff, model: child_group %>
+      <% end %>
+      <div>
+        <%= link_to_add_association 'add', f, attr, partial: 'form', render_options: {locals: {model: child_group, instance: child_group.new}} %>
+      </div>
     <% else %>
       <% instance.send("build_#{attr}") unless instance.send(attr) %>
 

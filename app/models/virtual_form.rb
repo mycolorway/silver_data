@@ -1,4 +1,5 @@
 class VirtualForm < DuckRecord::Base
+
   class << self
     attr_accessor :variant
 

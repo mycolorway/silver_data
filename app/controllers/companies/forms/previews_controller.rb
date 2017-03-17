@@ -50,10 +50,10 @@ class Companies::Forms::PreviewsController < Companies::Forms::ApplicationContro
       model.class_eval do
         if child_model.variant == :collection
           has_many child_model_name.to_sym, anonymous_class: child_model, validate: true
-          accepts_nested_attributes_for child_group.name.pluralize.to_sym
+          accepts_nested_attributes_for child_group.name.pluralize.to_sym, reject_if: :all_blank
         else
           has_one child_model_name.to_sym, anonymous_class: child_model, validate: true
-          accepts_nested_attributes_for child_group.name.to_sym
+          accepts_nested_attributes_for child_group.name.to_sym, reject_if: :all_blank
         end
       end
     end

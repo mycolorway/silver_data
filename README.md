@@ -8,6 +8,7 @@
 - `bundle`
 - `rake db:migrate && rake db:seed`
 - `bin/rails s`
+- <http://localhost:3000/companies/1/forms/1/preview>
 
 ## 关键文件
 
@@ -85,7 +86,7 @@ end
 - `Class.new`
 - `class_eval`
 
-首先定义基类：
+首先定义基类（示意）：
 
 ```ruby
 class VirtualForm < DuckRecord::Base
@@ -109,6 +110,8 @@ class VirtualForm < DuckRecord::Base
     end
 
     # 存储视图渲染时的顺序和渲染策略，键为字段名，值为类型（是`Field`还是`Group`）
+    # 由于 子groups（即嵌套模型）也需要渲染，所以必须存在这个属性
+    # 这个属性可以用来控制渲染顺序
     def fields
       @fields ||= {}
     end
@@ -160,5 +163,9 @@ end
 ### 表单的字段渲染顺序控制
 
 由于 Ruby 的字典有序，所以调整 `VirtualForm#fields` 的键的顺序即可，可以为 `Group` 增加 `order` 字段，存储字段（的标识）的顺序
+
+### 表单数据处理
+
+见 `app/models/virtual_form.rb#to_h`实现 `to_h` 方法，允许表单模型导出结构化的 `Hash`，用于后续处理或储存
 
 

@@ -19,4 +19,8 @@ class VirtualForm < DuckRecord::Base
       @fields ||= {}
     end
   end
+
+  def to_h
+    serializable_hash(include: self.class.reflections.keys).deep_symbolize_keys!
+  end
 end

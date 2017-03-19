@@ -4,14 +4,10 @@ class FormField < ApplicationRecord
   serialize :input_options, Hash
   serialize :validation_options, Hash
 
-  validates :name, :title, :store_type, :input_type, presence: true
+  validates :name, :title, :input_type, presence: true
   # TODO: NYI
   # validates :store_type, inclusion: { in: DuckRecord::Type.registry.registered }
   # validates :input_type, inclusion: { in: InputType.registry.registered }
-
-  def store_type
-    super.to_sym
-  end
 
   def input_type
     super.to_sym

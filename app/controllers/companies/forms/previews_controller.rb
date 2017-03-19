@@ -1,13 +1,18 @@
 class Companies::Forms::PreviewsController < Companies::Forms::ApplicationController
   def show
     @model = build_form_model(@form.group)
-    model_params = params.fetch(:form, {}).permit!
-    @instance = @model.new model_params
-    @instance.valid? if model_params.any?
+    @instance = @model.new
   end
 
   def create
-
+    @model = build_form_model(@form.group)
+    model_params = params.fetch(:form, {}).permit!
+    @instance = @model.new model_params
+    if @instance.valid?
+      render :create
+    else
+      render :show
+    end
   end
 
   private
@@ -18,8 +23,9 @@ class Companies::Forms::PreviewsController < Companies::Forms::ApplicationContro
     model.variant = group.variant
 
     group.fields.each do |f|
+      input_type = InputType.lookup(f.input_type)
       metadata = {
-        input_type: InputType.lookup(f.input_type),
+        input_type: input_type,
         title: f.title,
         hint: f.hint,
         record: f
@@ -28,7 +34,7 @@ class Companies::Forms::PreviewsController < Companies::Forms::ApplicationContro
       model.fields[f.name] = :field
 
       model.class_eval do
-        attribute f.name.to_sym, f.store_type, default: f.default_value
+        attribute f.name.to_sym, input_type.store_type, default: f.input_options[:default_value]
 
         if f.validation_options.any?
           validates f.name.to_sym, **f.validation_options

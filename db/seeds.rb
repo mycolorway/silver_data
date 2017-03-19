@@ -24,14 +24,13 @@ params = {
   title: '姓名',
   # 字段的输入提示
   hint: '你的姓名',
-  # 字段的数据类型
-  store_type: :string,
-  # 字段的默认值
-  default_value: '张三',
   # 字段的输入方式
   input_type: :text_field,
   # 字段的输入配置
-  input_options: {},
+  input_options: {
+    # 字段的默认值
+    default_value: '张三'
+  },
   # 输入验证
   validation_options: {
     # 非空
@@ -50,8 +49,6 @@ params = {
   title: '邮箱',
   # 字段的输入提示
   hint: '你的邮箱',
-  # 字段的数据类型
-  store_type: :string,
   # 字段的输入方式
   input_type: :email_field,
   # 字段的输入配置
@@ -72,17 +69,10 @@ nested_group = group.children.create! name: :work, variant: :normal
 #   name: 'department',
 #   # 字段显示名字
 #   title: '部门',
-#   # 字段的数据类型
-#   store_type: :string,
 #   # 字段的输入方式
 #   input_type: :select,
 #   # 字段的输入配置
 #   input_options: {
-#     # 输入验证
-#     validations: {
-#       # 非空
-#       presence: true
-#     },
 #     data_source: {
 #       department: {
 #         company_id: 1
@@ -100,8 +90,6 @@ params = {
   name: 'joined_date',
   # 字段显示名字
   title: '加入日期',
-  # 字段的数据类型
-  store_type: :date,
   # 字段的输入方式
   input_type: :date_field,
   # 输入验证
@@ -118,8 +106,6 @@ params = {
   name: 'leaved_date',
   # 字段显示名字
   title: '离开日期',
-  # 字段的数据类型
-  store_type: :date,
   # 字段的输入方式
   input_type: :date_field
 }
@@ -132,8 +118,6 @@ params = {
   name: 'item',
   # 字段显示名字
   title: '项目',
-  # 字段的数据类型
-  store_type: :string,
   # 字段的输入方式
   input_type: :text_field,
   # 输入验证
@@ -150,8 +134,6 @@ params = {
   name: 'amount',
   # 字段显示名字
   title: '数量',
-  # 字段的数据类型
-  store_type: :string,
   # 字段的输入方式
   input_type: :number_field,
   # 输入验证

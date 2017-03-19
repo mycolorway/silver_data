@@ -1,6 +1,7 @@
 module InputType
   class Base
     def type; end
+    def store_type; :string; end
     def options; {}; end
     def validation_options; {}; end
     def available_validations; []; end

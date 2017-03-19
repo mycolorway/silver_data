@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(version: 20170313214517) do
     t.string   "title",              null: false
     t.string   "hint"
     t.string   "default_value"
-    t.string   "store_type",         null: false
     t.string   "input_type",         null: false
     t.text     "input_options"
     t.text     "validation_options"

@@ -164,6 +164,10 @@ end
 
 由于 Ruby 的字典有序，所以调整 `VirtualForm#fields` 的键的顺序即可，可以为 `Group` 增加 `order` 字段，存储字段（的标识）的顺序
 
+### 扩展验证种类
+
+写标准的 Rails 模型的验证器（`Validator`）即可
+
 ### 表单数据处理
 
 见 `app/models/virtual_form.rb#to_h`实现 `to_h` 方法，允许表单模型导出结构化的 `Hash`，用于后续处理或储存

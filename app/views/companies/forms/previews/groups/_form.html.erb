@@ -1,0 +1,26 @@
+<% model.fields.each do |attr, type| %>
+  <% if type == :group %>
+    <% child_group = model.reflections[attr].klass %>
+    <% if child_group.variant == :collection %>
+      <%= f.fields_for attr do |ff| %>
+        <%= render 'form', f: ff, model: child_group %>
+      <% end %>
+      <div>
+        <%= link_to_add_association 'add', f, attr, partial: 'form', render_options: {locals: {model: child_group, instance: child_group.new}} %>
+      </div>
+    <% else %>
+      <% instance.send("build_#{attr}") unless instance.send(attr) %>
+
+      <%= f.fields_for "#{attr}_attributes", instance.send(attr) do |ff| %>
+        <%= render 'form', f: ff, model: child_group, instance: instance.send(attr) %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <% metadata = model.attribute_metadata[attr] %>
+
+    <div class="field">
+      <label><%= metadata[:title] %>: <%= metadata[:hint] %></label>
+      <%= metadata[:input_type].render(self, f, attr, metadata[:record]) %>
+    </div>
+  <% end %>
+<% end %>

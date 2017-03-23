@@ -1,0 +1,27 @@
+<h1>Form Groups</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Type</th>
+      <th>Options</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @groups.each do |group| %>
+      <tr>
+        <td><%= group.options[:title] || group.name %></td>
+        <td><%= group.type %></td>
+        <td><%= group.options %></td>
+        <td><%= link_to 'Preview', company_form_preview_group_path(@company, @form, group) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Back', company_form_preview_path(@company, @form) %>

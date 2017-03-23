@@ -1,11 +1,25 @@
-class Companies::Forms::PreviewsController < Companies::Forms::ApplicationController
-  def show
-    @model = build_form_model(@form.group)
-    @instance = @model.new
+class Companies::Forms::Previews::GroupsController < Companies::Forms::ApplicationController
+  before_action :set_group, only: [:show]
+
+  # GET /groups
+  # GET /groups.json
+  def index
+    @groups = @form.group.descendants.where.not(type: Form::CollectionGroup)
   end
 
+  # GET /groups/1
+  # GET /groups/1.json
+  def show
+    @group = @form.group.descendants.where.not(type: Form::CollectionGroup).find(params[:id])
+    @model = build_form_model(@group)
+    @instance = @model.new params.fetch(:form, {}).permit!
+  end
+
+  # POST /groups
+  # POST /groups.json
   def create
-    @model = build_form_model(@form.group)
+    @group = @form.group.descendants.where.not(type: Form::CollectionGroup).find(params[:id])
+    @model = build_form_model(@group)
     model_params = params.fetch(:form, {}).permit!
     @instance = @model.new model_params
     if @instance.valid?
@@ -16,6 +30,10 @@ class Companies::Forms::PreviewsController < Companies::Forms::ApplicationContro
   end
 
   private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_group
+    @group = @form.group.descendants.find(params[:id])
+  end
 
   def build_form_model(group)
     model = Class.new(VirtualForm)
@@ -80,4 +98,3 @@ class Companies::Forms::PreviewsController < Companies::Forms::ApplicationContro
     end
   end
 end
-

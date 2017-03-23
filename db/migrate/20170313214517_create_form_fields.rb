@@ -4,9 +4,9 @@ class CreateFormFields < ActiveRecord::Migration[5.0]
       t.string :name, null: false
       t.string :title, null: false
       t.string :hint
-      t.string :input_type, null: false
-      t.text :input_options
-      t.text :validation_options
+      t.string :type, null: false
+      t.text :options
+      t.text :validations
       t.references :form_group, foreign_key: true
 
       t.timestamps

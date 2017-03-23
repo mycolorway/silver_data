@@ -1,5 +1,23 @@
 class VirtualForm < DuckRecord::Base
 
+  def to_h
+    hash = serializable_hash
+    self.class.reflections.keys.each do |k|
+      records = send(k)
+      sub_hash = if records.respond_to?(:to_ary)
+                   records.to_ary.map { |a| a.to_h }
+                 else
+                   records.to_h
+                 end
+
+      if sub_hash.any?
+        hash[k] = sub_hash
+      end
+    end
+
+    hash
+  end
+
   class << self
     attr_accessor :variant
 
@@ -18,9 +36,5 @@ class VirtualForm < DuckRecord::Base
     def fields
       @fields ||= {}
     end
-  end
-
-  def to_h
-    serializable_hash(include: self.class.reflections.keys).deep_symbolize_keys!
   end
 end

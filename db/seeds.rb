@@ -15,7 +15,7 @@ end
 # 创建表单记录
 form = company.forms.create! title: '样本表单', description: '样本表单，测试各种类型字段的支持情况'
 # 创建表单字段组1
-group = form.create_group! name: :demo, variant: :normal
+group = form.create_group! type: Form::SimpleGroup.to_s, name: :demo
 # 创建一个简单字段
 params = {
   # 字段标识
@@ -25,14 +25,14 @@ params = {
   # 字段的输入提示
   hint: '你的姓名',
   # 字段的输入方式
-  input_type: :text_field,
+  type: Form::TextField.to_s,
   # 字段的输入配置
-  input_options: {
+  options: {
     # 字段的默认值
     default_value: '张三'
   },
   # 输入验证
-  validation_options: {
+  validations: {
     # 非空
     presence: true,
     # 长度验证
@@ -50,18 +50,18 @@ params = {
   # 字段的输入提示
   hint: '你的邮箱',
   # 字段的输入方式
-  input_type: :email_field,
+  type: Form::EmailField,
   # 字段的输入配置
-  input_options: {},
+  options: {},
   # 输入验证
-  validation_options: {
+  validations: {
     # 非空
     presence: true
   }
 }
 group.fields.create! **params
 
-nested_group = group.children.create! name: :work, variant: :normal
+work_group = group.children.create! type: Form::SimpleGroup.to_s, name: :work
 
 # 再创建一个简单字段
 # params = {
@@ -83,7 +83,7 @@ nested_group = group.children.create! name: :work, variant: :normal
 # group.fields.create! **params
 
 # 表单的组是一个树形结构
-nested_group = nested_group.children.create! name: :join_and_leave, variant: :combination
+nested_group = work_group.children.create! type: Form::ShallowGroup.to_s, name: :join_and_leave
 # 再创建一个简单字段
 params = {
   # 字段标识
@@ -91,9 +91,9 @@ params = {
   # 字段显示名字
   title: '加入日期',
   # 字段的输入方式
-  input_type: :date_field,
+  type: Form::DateField,
   # 输入验证
-  validation_options: {
+  validations: {
     date: {before: :leaved_date},
     allow_blank: true
   }
@@ -107,11 +107,43 @@ params = {
   # 字段显示名字
   title: '离开日期',
   # 字段的输入方式
-  input_type: :date_field
+  type: Form::DateField
 }
 nested_group.fields.create! **params
 
-nested_group = group.children.create! name: :item, variant: :collection, options: {title: '清单'}
+# 表单的组是一个树形结构
+nested_group = work_group.children.create! type: Form::SimpleGroup.to_s, name: :address
+# 再创建一个简单字段
+params = {
+  # 字段标识
+  name: 'location',
+  # 字段显示名字
+  title: '地区',
+  # 字段的输入方式
+  type: Form::TextField,
+  # 输入验证
+  validations: {
+    presence: true
+  }
+}
+nested_group.fields.create! **params
+
+# 再创建一个简单字段
+params = {
+  # 字段标识
+  name: 'address',
+  # 字段显示名字
+  title: '住址',
+  # 字段的输入方式
+  type: Form::TextField,
+  # 输入验证
+  validations: {
+    presence: true
+  }
+}
+nested_group.fields.create! **params
+
+nested_group = group.children.create! type: Form::CollectionGroup.to_s, name: :item, options: {title: '清单'}
 # 创建一个简单字段
 params = {
   # 字段标识
@@ -119,9 +151,26 @@ params = {
   # 字段显示名字
   title: '项目',
   # 字段的输入方式
-  input_type: :text_field,
+  type: Form::TextField,
   # 输入验证
-  validation_options: {
+  validations: {
+    # 非空
+    presence: true
+  }
+}
+nested_group.fields.create! **params
+
+nested_group = group.children.create! type: Form::CollectionGroup.to_s, name: :item, options: {title: '清单'}
+# 创建一个简单字段
+params = {
+  # 字段标识
+  name: 'item',
+  # 字段显示名字
+  title: '项目',
+  # 字段的输入方式
+  type: Form::TextField,
+  # 输入验证
+  validations: {
     # 非空
     presence: true
   }
@@ -135,9 +184,9 @@ params = {
   # 字段显示名字
   title: '数量',
   # 字段的输入方式
-  input_type: :number_field,
+  type: Form::NumberField,
   # 输入验证
-  validation_options: {
+  validations: {
     # 非空
     presence: true,
     numericality: {
